@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  dovecot:
+    build:
+      context: dovecot/.
+    ports:
+      - "110:110" # POP3 on 110, TLS 995
+      - "995:995" # POP3 on 110, TLS 995
+      - "143:143" # IMAP on 143, TLS 993
+      - "993:993" # IMAP on 143, TLS 993
+      - "587:587" # Submission on 587
+      - "24:24" # LMTP on 24
+      - "4190:4190" # ManageSieve on 4190
+    volumes:
+      - .data/srv/mail:/srv/mail
+      - .data/etc/dovecot:/etc/dovecot
